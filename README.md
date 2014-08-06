@@ -1,0 +1,4 @@
+PollLite
+========
+
+Voting App
