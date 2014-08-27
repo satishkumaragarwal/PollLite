@@ -29,7 +29,8 @@ app.use(morgan('dev')); //Log all http request to console.
 app.use(cookieParser());
 app.use(bodyParser());
 
-app.set('view engine','ejs');
+//app.set('view engine','ejs');
+
 
 app.use(session({ secret : 'ilovescotchmeantutorialsscotchmeantutorials'}));
 app.use(passport.initialize());
@@ -39,7 +40,9 @@ app.use(flash());
 // routes ==================================================
 require('./app/routes')(app, passport); // configure our routes
 
+app.use(express.static(__dirname + '/public'));
+
 // start app ===============================================
 app.listen(port);										// startup our app at http://localhost:8080
 console.log('Magic happens on port ' + port); 			// shoutout to the user
-//exports = module.exports = app; 						// expose app
+exports = module.exports = app; 						// expose app

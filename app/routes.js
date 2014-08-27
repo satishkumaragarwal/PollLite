@@ -3,7 +3,7 @@
 	module.exports = function(app, passport) {
 		// route for home page
 	app.get('/', function(req, res) {
-		res.render('../public/views/index.ejs'); // load the index.ejs file
+		res.sendfile('./public/views/login.html'); // supply full path cause sendfile does not use static folder concept.
 	});
 
 	// route for login form
@@ -12,11 +12,19 @@
 	// route for processing the signup form
 
 	// route for showing the profile page
-	app.get('/profile', isLoggedIn, function(req, res) {
-		res.render('../public/views/profile.ejs', {
-			user : req.user // get the user out of session and pass to template
-		});
-	});
+	/*app.get('/login', isLoggedIn, function(req, res) {
+		res.sendfile('./public/views/login.html');
+			//user : req.user // get the user out of session and pass to template
+	});*/
+
+ 	/*app.get('/login', function(req,res){
+ 		res.sendfile('./public/views/login.html');
+ 	});*/
+
+ 	app.get('/home', function(req,res){
+ 		res.sendfile('./public/views/index.html');
+ 		user : req.user // get the user out of session and pass to template
+ 	});
 
     // route for logging out
 	app.get('/logout', function(req, res) {
@@ -38,7 +46,7 @@
     // the callback after google has authenticated the user
     app.get('/oauth2callback',
             passport.authenticate('google', {
-                    successRedirect : '/profile',
+                    successRedirect : '/home',
                     failureRedirect : '/'
             }));
 
