@@ -23,7 +23,7 @@
 
  	app.get('/home', function(req,res){
  		res.sendfile('./public/views/index.html');
- 		user : req.user // get the user out of session and pass to template
+ 		user : req.user; // get the user out of session and pass to template
  	});
 
     // route for logging out
