@@ -4,6 +4,7 @@
 		// route for home page
 	app.get('/', function(req, res) {
 		res.sendfile('./public/views/login.html'); // supply full path cause sendfile does not use static folder concept.
+		
 	});
 
 	// route for login form
@@ -20,10 +21,22 @@
  	/*app.get('/login', function(req,res){
  		res.sendfile('./public/views/login.html');
  	});*/
+ 	
+ 	/*app.get('/views/:name', function(req,res){
+ 		var name = req.params.name;
+ 		res.render(name);
+ 	});*/
 
  	app.get('/home', function(req,res){
- 		res.sendfile('./public/views/index.html');
- 		user : req.user; // get the user out of session and pass to template
+ 		var userobj = {id 		: req.user.google.id,
+		token	: req.user.google.token,
+		email	: req.user.google.email,
+		name	: req.user.google.name };
+		console.log("data: " + JSON.stringify(userobj));
+		req.session.user = userobj;
+ 		//$scope.myUser = req.user; // get the user out of session and pass to template
+ 		res.render('index',{title : 'title is working', myuser : userobj});
+ 		
  	});
 
     // route for logging out

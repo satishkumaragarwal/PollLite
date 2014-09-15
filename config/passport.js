@@ -21,11 +21,11 @@ module.exports = function(passport) {
 
 	passport.use(new GoogleStrategy({
 		clientID        : configAuth.googleAuth.clientID,
-        clientSecret    : configAuth.googleAuth.clientSecret,
-        callbackURL     : configAuth.googleAuth.callbackURL,
+        	clientSecret    : configAuth.googleAuth.clientSecret,
+        	callbackURL     : configAuth.googleAuth.callbackURL,
 
-    },
-    function(token, refreshToken, profile, done) {
+    	},
+    	function(token, refreshToken, profile, done) {
 
 		// make the code asynchronous
 		// User.findOne won't fire until we have all our data back from Google

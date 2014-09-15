@@ -29,7 +29,7 @@ app.use(morgan('dev')); //Log all http request to console.
 app.use(cookieParser());
 app.use(bodyParser());
 
-//app.set('view engine','ejs');
+app.set('view engine','jade');
 
 
 app.use(session({ secret : 'ilovescotchmeantutorialsscotchmeantutorials'}));
@@ -40,6 +40,7 @@ app.use(flash());
 // routes ==================================================
 require('./app/routes')(app, passport); // configure our routes
 
+app.set('views', __dirname + '/public/views');
 app.use(express.static(__dirname + '/public'));
 
 // start app ===============================================

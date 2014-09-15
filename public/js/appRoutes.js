@@ -6,24 +6,16 @@
 	$routeProvider
 
 		// home page
-		.when('/', {
-			templateUrl: 'views/home.html',
+		/*.when('/home', {
+			templateUrl: 'home',
 			controller: 'mainController'
+		})*/
+		
+		.when('/detail', {
+			templateUrl: '/views/details.html'	
 		})
 
-		// nerds page that will use the NerdController
-		.when('/nerds', {
-			templateUrl: 'views/nerd.html',
-			controller: 'NerdController'
-		})
-
-		// 
-		.when('/geeks', {
-			templateUrl: 'views/geek.html',
-			controller: 'GeekController'	
-		})
-
-		.otherwise({ redirectTo : '/'});
+		.otherwise({ redirectTo : '/home'});
 
 	$locationProvider.html5Mode(true);
 
