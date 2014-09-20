@@ -14,30 +14,28 @@ html(lang="en")
 		script(src="lib/angular-route/angular-route.min.js")
 
 	
-		script(src="js/controller/MainCtrl.js")
-		script(src="js/controller/NerdCtrl.js")
-		script(src="js/services/NerdService.js")
-		script(src="js/controller/GeekCtrl.js")
-		script(src="js/services/GeekService.js")
+		
+		script(src="js/controller/InventoryCtrl.js")
+		script(src="js/services/RestApi.js")
 		script(src="js/appRoutes.js")
 		script(src="js/app.js")
 
 	body(ng-app="sampleApp")
-		div.container(ng-controller = "mainController")
+		div.container
 			nav.navbar.navbar-inverse
 				div.navbar-header
-					a.navbar-brand(href="/") Node and Angular
+					a.navbar-brand(href="/") Anon
 				ul.nav.navbar-nav
 					li
-						a(href="/detail") Details
-			p
-				strong id: #{myuser.id} 
-				br
-				strong token: #{myuser.token}
-				br
-				strong email: #{myuser.email}
-				br
-				strong name: #{myuser.name}
+						a(href="/wishlist") Wishlist
+					li
+						a(href="/inventory") Inventory
+					li
+						a(href='/search') Search
+					li
+						a(href="/logout") Logout
+			h3
+				strong #{myuser.name}
 
 			div(ng-view)
 

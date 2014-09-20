@@ -1,0 +1,11 @@
+<!-- public/views/Inventory.html -->
+
+<div id ="divInventory" class="jumbotron text-center">
+	<h4>Inventory page!</h4>
+	<input ng-init="message=''" ng-model="message" >
+    <button ng-click="inventoryList(message);">SEARCH</button>
+    <div ng-repeat="book in Books">
+        <h2>{{book.title}}</h2>
+        <b>Book ISBN:</b> {{book.isbn10}}
+</div>
+</div>

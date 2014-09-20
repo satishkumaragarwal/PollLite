@@ -16,7 +16,13 @@ var session = require('express-session');
 var morgan = require('morgan'); //Logger middleware
 
 // configuration ===========================================
-	
+
+// configure app to use bodyParser()
+// this will let us get the data from a POST
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
 // config files
 var db = require('./config/db');
 
@@ -39,6 +45,7 @@ app.use(flash());
 
 // routes ==================================================
 require('./app/routes')(app, passport); // configure our routes
+require('./app/rest')(app);
 
 app.set('views', __dirname + '/public/views');
 app.use(express.static(__dirname + '/public'));

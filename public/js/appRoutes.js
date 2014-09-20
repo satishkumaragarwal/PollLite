@@ -5,14 +5,21 @@
 
 	$routeProvider
 
-		// home page
-		/*.when('/home', {
-			templateUrl: 'home',
-			controller: 'mainController'
-		})*/
+		.when('/search', {
+			templateUrl: '/views/search.html'	
+		})
 		
-		.when('/detail', {
-			templateUrl: '/views/details.html'	
+		.when('/wishlist', {
+			templateUrl: '/views/wishlist.html'	
+		})
+		
+		.when('/inventory', {
+			templateUrl: '/views/inventory.html',
+			controller:'InventoryController'
+		})
+		
+		.when('/logout', {
+			templateUrl: '/views/logout.html'	
 		})
 
 		.otherwise({ redirectTo : '/home'});
