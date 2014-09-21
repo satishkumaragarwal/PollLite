@@ -1,4 +1,4 @@
-var Books = require('./models/book.js');
+var GoogleBooks = require('./models/bookGoogle.js');
 var Client = require('node-rest-client').Client;
 var client = new Client();
 
@@ -6,7 +6,7 @@ var client = new Client();
 module.exports = function(app){
     //To get all books
     app.get('/api/books',function(req, res) {
-		Books.find(function(err, books) {
+		GoogleBooks.find(function(err, books) {
 			if (err){
 				res.send(err);
             }
@@ -16,7 +16,7 @@ module.exports = function(app){
 	
 	//To get books by ID
 	app.get('/api/books/:book_id', function(req, res) {
-		Books.findById(req.params.book_id, function(err, book) {
+		GoogleBooks.findById(req.params.book_id, function(err, book) {
 			if (err){
 				res.send(err);
 			}
@@ -26,7 +26,7 @@ module.exports = function(app){
 	
 	//To get books by ISBN
 	app.get('/api/isbn/:book_isbn', function(req, res) {
-		Books.findOne({isbn10 : req.params.book_isbn}, function(err, book) {
+		GoogleBooks.findOne({id : req.params.book_isbn}, function(err, book) {
 			if (book){
 				var arr = [];
 				arr.push(book);
@@ -34,21 +34,29 @@ module.exports = function(app){
 			}
 			
 			else {
-			        client.get("http://isbndb.com/api/v2/json/BAX9VPX1/book/"+req.params.book_isbn, function(rsdata, restRes) {
-                        var obj = new Books(); 
-                        var temp = JSON.parse(rsdata);
-                        obj = temp.data[0];
-                        obj.save(function(err){
-                            if(err){
-                                    console.log(err);
-                            }
-                            
-                            res.send(temp.data[0]);
-                            
-                        });
+			        client.get("https://www.googleapis.com/books/v1/volumes?q="+req.params.book_isbn, function(rsdata, restRes) {
+                       	var temp = JSON.parse(rsdata);
+                      	res.send(temp.items);
                     });
 			}
 			
+		});
+	});
+	
+	app.post('/api/books', function(req,res){
+		
+		GoogleBooks.findOne({id : req.body.id}, function(err, book) {
+			if (book){
+				res.json({ message: 'Book exists!' });
+			}
+			else{
+				var newBook = new GoogleBooks(req.body);
+				newBook.save(function(err, project, numAffected) {
+					if (err)
+						res.send(err);
+					res.json({ message: 'Book added!' });
+				});
+			}
 		});
 	});
 }

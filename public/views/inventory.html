@@ -5,7 +5,9 @@
 	<input ng-init="message=''" ng-model="message" >
     <button ng-click="inventoryList(message);">SEARCH</button>
     <div ng-repeat="book in Books">
-        <h2>{{book.title}}</h2>
-        <b>Book ISBN:</b> {{book.isbn10}}
+        <div ng-click="clickAlert(book)">
+            <h2>{{book.volumeInfo.title}}</h2>
+            <b>Book ISBN:</b> {{book.id}}
+        </div>
 </div>
 </div>

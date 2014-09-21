@@ -34,7 +34,8 @@ mongoose.connect(db.url); // connect to our mongoDB database (uncomment after yo
 app.use(morgan('dev')); //Log all http request to console.
 app.use(cookieParser());
 app.use(bodyParser());
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.set('view engine','jade');
 
 

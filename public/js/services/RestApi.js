@@ -27,6 +27,15 @@ angular.module('RestApiModule', []).factory('RestApi', ['$http', function($http)
 			
 			return promise;
 		},
+		
+		postBooks : function(book) {
+			var promise = $http.post('/api/books/',book);
+			promise.then(function(){
+				console.log(promise);
+			});
+			
+			return promise;
+		},
 	}
 	
 }]);
