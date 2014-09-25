@@ -1,5 +1,25 @@
-<!-- public/views/search.html -->
+<!-- public/views/Search.html -->
 
-<div class="jumbotron text-center">
+<div id ="divSearch" class="jumbotron text-center">
 	<h1>Search page!</h1>
+	<input ng-init="message=''" ng-model="message" >
+    <button ng-click="searchList(message);">SEARCH</button>
 </div>
+
+<table width="75%" align="center">
+    <tr ng-repeat="book in Books">
+            <td align="left">
+                <h4 class = "text-left">Title : {{book.volumeInfo.title}}</h4>
+                <div>
+                    <b class = "text-left">Author : </b><p ng-repeat="author in book.volumeInfo.authors">{{author}}</p>
+                </div>
+            </td>
+            <br/>
+            <td align="right">
+                <button class = "text-right" style="width:123px" ng-click="clickAlert(book)">Add To Wishlist</button>
+                <div>
+                    <button class = "text-right"  style="width:123px" ng-click="clickAlert(book)">Add To Inventory</button>
+                </div>
+            </td>
+    </tr>
+</table>

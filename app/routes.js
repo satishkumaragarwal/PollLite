@@ -3,7 +3,7 @@
 	module.exports = function(app, passport) {
 	
 	// route for home page
-	app.get('/', function(req, res) {
+	app.get('/', isLoggedInRootPage, function(req, res) {
 		res.sendfile('./public/views/login.html'); // supply full path cause sendfile does not use static folder concept.
 		
 	});
@@ -14,7 +14,7 @@
 			//user : req.user // get the user out of session and pass to template
 	});*/
 
- 	app.get('/home', function(req,res){
+ 	app.get('/home', isLoggedIn, function(req,res){
  		var userobj = {id 		: req.user.google.id,
 		token	: req.user.google.token,
 		email	: req.user.google.email,
@@ -25,8 +25,10 @@
  	});
 
     // route for logging out
-	app.get('/logout', function(req, res) {
+	app.get('/exit', isLoggedIn, function(req, res) {
+		console.log('in logout function');
 		req.logout();
+		req.session.destroy();
 		res.redirect('/');
 	});
 
@@ -47,7 +49,15 @@
                     successRedirect : '/home',
                     failureRedirect : '/'
             }));
-
+    app.get('/search',function(req,res){
+    	res.redirect('/');
+    });
+    app.get('/wishlist',function(req,res){
+    	res.redirect('/');
+    });
+    app.get('/inventory',function(req,res){
+    	res.redirect('/');
+    });
 };
 
 // route middleware to make sure a user is logged in
@@ -59,5 +69,17 @@ function isLoggedIn(req, res, next) {
 
 	// if they aren't redirect them to the home page
 	res.redirect('/');
+}
+
+function isLoggedInRootPage(req, res, next) {
+
+	// if user is authenticated in the session, carry on
+	if (req.isAuthenticated()){
+		res.redirect('/home');
+	}
+	// if they aren't redirect them to the home page
+	else {
+		return next();
+	}
 }
 

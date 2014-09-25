@@ -4,13 +4,7 @@ angular.module('RestApiModule', []).factory('RestApi', ['$http', function($http)
 	return {
 		// call to get all Books
 		getBooks : function() {
-			var promise = $http.get('/api/books');
-			promise.then(function(){
-				console.log(promise);
-			});
-			
-			return promise;
-
+			return $http.get('/api/books');
 		},
 
 		// call to book by id
@@ -20,21 +14,11 @@ angular.module('RestApiModule', []).factory('RestApi', ['$http', function($http)
 
 		// call to Book by ISBN
 		getBooksByISBN : function(isbn) {
-			var promise = $http.get('/api/isbn/'+isbn);
-			promise.then(function(){
-				console.log(promise);
-			});
-			
-			return promise;
+			return $http.get('/api/isbn/'+isbn);
 		},
 		
 		postBooks : function(book) {
-			var promise = $http.post('/api/books/',book);
-			promise.then(function(){
-				console.log(promise);
-			});
-			
-			return promise;
+			return $http.post('/api/books/',book);
 		},
 	}
 	

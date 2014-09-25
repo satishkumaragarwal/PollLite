@@ -2,12 +2,13 @@
 doctype html
 html(lang="en")
 	head
-
+		base(href="/")
 		title #{title}
 
 	
 		link(rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css")
 		link(rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css")
+		link(rel="stylesheet" href="css/myStyle.css")
 
 	
 		script(src="lib/angular/angular.min.js")
@@ -16,6 +17,9 @@ html(lang="en")
 	
 		
 		script(src="js/controller/InventoryCtrl.js")
+		script(src="js/controller/SearchCtrl.js")
+		script(src="js/controller/WishlistCtrl.js")
+		script(src="js/controller/LogoutCtrl.js")
 		script(src="js/services/RestApi.js")
 		script(src="js/appRoutes.js")
 		script(src="js/app.js")
@@ -33,7 +37,7 @@ html(lang="en")
 					li
 						a(href='/search') Search
 					li
-						a(href="/logout") Logout
+						a(href="/exit") Logout
 			h3
 				strong #{myuser.name}
 

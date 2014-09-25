@@ -1,8 +1,7 @@
-// public/js/controllers/InventoryCtrl.js
-angular.module('InventoryCtrl', []).controller('InventoryController', ['$scope','RestApi',function($scope,RestApi) {
+// public/js/controllers/WishlistCtrl.js
+angular.module('WishlistCtrl', []).controller('WishlistController', ['$scope','RestApi',function($scope,RestApi) {
 
-  //console.log('hello');
-	$scope.inventoryInit = function(){
+    $scope.init = function(){
         var promise;
         promise = {};
         promise = RestApi.getBooks();

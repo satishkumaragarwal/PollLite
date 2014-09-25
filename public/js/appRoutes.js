@@ -6,11 +6,13 @@
 	$routeProvider
 
 		.when('/search', {
-			templateUrl: '/views/search.html'	
+			templateUrl: '/views/search.html',
+			controller:'SearchController'
 		})
 		
 		.when('/wishlist', {
-			templateUrl: '/views/wishlist.html'	
+			templateUrl: '/views/wishlist.html',
+			controller:'WishlistController'
 		})
 		
 		.when('/inventory', {
@@ -18,11 +20,9 @@
 			controller:'InventoryController'
 		})
 		
-		.when('/logout', {
-			templateUrl: '/views/logout.html'	
-		})
-
-		.otherwise({ redirectTo : '/home'});
+		/*.when('/logout', {
+			controller: 'LogoutController'
+		})*/
 
 	$locationProvider.html5Mode(true);
 
