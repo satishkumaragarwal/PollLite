@@ -24,9 +24,9 @@ app.use(bodyParser.json());
 
 
 // config files
-var db = require('./config/db');
+var db = require('./app/config/db');
 
-require('./config/passport')(passport); // pass passport for configuration
+require('./app/config/passport')(passport); // pass passport for configuration
 
 var port = process.env.PORT || 8080; // set our port
 mongoose.connect(db.url); // connect to our mongoDB database (uncomment after you enter in your own credentials in config/db.js)
