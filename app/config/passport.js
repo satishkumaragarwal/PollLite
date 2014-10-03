@@ -2,7 +2,7 @@
 
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-var User = require('../app/models/user');
+var User = require('../models/user');
 
 var configAuth = require('./auth');
 
@@ -20,10 +20,9 @@ module.exports = function(passport) {
 	});
 
 	passport.use(new GoogleStrategy({
-		clientID        : configAuth.googleAuth.clientID,
+			clientID        : configAuth.googleAuth.clientID,
         	clientSecret    : configAuth.googleAuth.clientSecret,
         	callbackURL     : configAuth.googleAuth.callbackURL,
-
     	},
     	function(token, refreshToken, profile, done) {
 
@@ -32,7 +31,7 @@ module.exports = function(passport) {
 		process.nextTick(function() {
 
 	        // try to find the user based on their google id
-	        User.findOne({ 'google.id' : profile.id }, function(err, user) {
+	        User.findOne({ 'google.id' : profile.id}, function(err, user) {
 	            if (err)
 	                return done(err);
 
