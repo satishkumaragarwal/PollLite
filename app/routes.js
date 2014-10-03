@@ -41,7 +41,9 @@
 	// send to google to do the authentication
 	// profile gets us their basic information including their name
 	// email gets their emails
-    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] ,
+    	 successRedirect : '/home',
+         failureRedirect : '/'}));
 
     // the callback after google has authenticated the user
     app.get('/oauth2callback',
@@ -49,15 +51,6 @@
                     successRedirect : '/home',
                     failureRedirect : '/'
             }));
-    app.get('/search',function(req,res){
-    	res.redirect('/');
-    });
-    app.get('/wishlist',function(req,res){
-    	res.redirect('/');
-    });
-    app.get('/inventory',function(req,res){
-    	res.redirect('/');
-    });
 };
 
 // route middleware to make sure a user is logged in
