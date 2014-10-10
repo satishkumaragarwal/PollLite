@@ -20,9 +20,10 @@
 			controller:'InventoryController'
 		})
 		
-		/*.when('/logout', {
+		.when('/logout', {
+			templateUrl: '/views/logout.html',
 			controller: 'LogoutController'
-		})*/
+		})
 
 	$locationProvider.html5Mode(true);
 

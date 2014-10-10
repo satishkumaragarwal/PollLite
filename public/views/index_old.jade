@@ -1,29 +1,23 @@
 doctype html
-
 html(lang="en")
 	head
 		base(href="/")
 		title #{title}
 		link(rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css")
 		link(rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css")
-		link(rel="stylesheet" href="views/css/myStyle.css")
-		script(src="lib/angular/angular.min.js")
-		script(src="lib/angular-route/angular-route.min.js")
-		script(src="lib/angular-cookies/angular-cookies.min.js")
-		script(src="controller/InventoryCtrl.js")
-		script(src="controller/SearchCtrl.js")
-		script(src="controller/WishlistCtrl.js")
-		script(src="controller/LogoutCtrl.js")
-		script(src="controller/MainCtrl.js")
-		script(src="services/RestApi.js")
-		script(src="appRoutes.js")
-		script(src="app.js")
+		link(rel="stylesheet" href="css/myStyle.css")
 		script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
 		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
-		script.
-				var resultObj = !{JSON.stringify(myuser)}
+		script(src="js/controller/InventoryCtrl.js")
+		script(src="js/controller/SearchCtrl.js")
+		script(src="js/controller/WishlistCtrl.js")
+		script(src="js/controller/LogoutCtrl.js")
+		script(src="js/services/RestApi.js")
+		script(src="js/appRoutes.js")
+		script(src="js/app.js")
+
 	body(ng-app="sampleApp")
-		div.container(ng-controller = 'MainController')
+		div.container
 			nav.navbar.navbar-inverse(role="navigation")
 				div.container-fluid
 					div.navbar-header
@@ -32,8 +26,7 @@ html(lang="en")
 							span.icon-bar
 							span.icon-bar
 							span.icon-bar
-						a.navbar-brand(href="/") #{myuser.google.name}
-					
+						a.navbar-brand(href="/") Anon
 					div.collapse.navbar-collapse(id="bs-example-navbar-collapse-1")
 						ul.nav.navbar-nav
 							li
@@ -41,7 +34,10 @@ html(lang="en")
 							li
 								a(href="/inventory") Inventory
 							li
-								a(href="/search") Search
+								a(href='/search') Search
 							li
-								a(href="/logout") Logout
-			div(ng-view="")
+								a(href="/exit") Logout
+			h3
+				strong #{myuser.name}
+
+			div(ng-view)

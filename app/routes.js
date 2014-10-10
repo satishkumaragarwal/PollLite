@@ -8,30 +8,17 @@
 		
 	});
 
-	// route for showing the profile page
-	/*app.get('/login', isLoggedIn, function(req, res) {
-		res.sendfile('./public/views/login.html');
-			//user : req.user // get the user out of session and pass to template
-	});*/
-
  	app.get('/home', isLoggedIn, function(req,res){
- 		var userobj = {id 		: req.user.google.id,
-		token	: req.user.google.token,
-		email	: req.user.google.email,
-		name	: req.user.google.name };
- 		//$scope.myUser = req.user; // get the user out of session and pass to template
- 		res.render('index',{title : 'title is working', myuser : userobj});
+ 		var newUser = JSON.parse(JSON.stringify(req.user));
+ 		res.render('index',{title : 'title is working', myuser : newUser});
  		
  	});
-
-    // route for logging out
-	app.get('/exit', isLoggedIn, function(req, res) {
-		console.log('in logout function');
-		req.logout();
-		req.session.destroy();
-		res.redirect('/');
+	
+	app.get('/logout', function(req, res){
+	  req.logout();
+	  res.redirect('/');
 	});
-
+	
 	// facebook routes
 	// twitter routes
 

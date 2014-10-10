@@ -1,13 +1,17 @@
 {
-	"name": "polllite",
-	"description": "open source voting app",
-	"version": "0.0.1",
-	"author": "Satish Agarwal",
-	"dependencies":{
-		"bootstrap": "latest",
-		"font-awesome": "latest",
-		"animate.css": "latest",
-		"angular": "latest",
-		"angular-route": "latest"
-	}
+  "name": "polllite",
+  "description": "open source voting app",
+  "version": "0.0.1",
+  "author": "Satish Agarwal",
+  "dependencies": {
+    "bootstrap": "latest",
+    "font-awesome": "latest",
+    "animate.css": "latest",
+    "angular": "latest",
+    "angular-route": "latest",
+    "angular-cookies": "latest"
+  },
+  "resolutions": {
+    "angular": "1.2.26"
+  }
 }

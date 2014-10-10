@@ -2,7 +2,7 @@
 angular.module('InventoryCtrl', []).controller('InventoryController', ['$scope','RestApi',function($scope,RestApi) {
 
   //console.log('hello');
-	$scope.inventoryInit = function(){
+	/*$scope.inventoryInit = function(){
         var promise;
         promise = {};
         promise = RestApi.getBooks();
@@ -13,5 +13,7 @@ angular.module('InventoryCtrl', []).controller('InventoryController', ['$scope',
           console.log('failure loading movie', errorPayload);
         });
         return promise;
-	}
+	}*/
+	
+	$scope.Inventory = resultObj.inventory;
 }]);

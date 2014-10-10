@@ -17,8 +17,12 @@ angular.module('RestApiModule', []).factory('RestApi', ['$http', function($http)
 			return $http.get('/api/isbn/'+isbn);
 		},
 		
-		postBooks : function(book) {
-			return $http.post('/api/books/',book);
+		postWishlist : function(book) {
+			return $http.post('/api/wishlist/',book);
+		},
+		
+		postInventory : function(book) {
+			return $http.post('/api/inventory/',book);
 		},
 	}
 	

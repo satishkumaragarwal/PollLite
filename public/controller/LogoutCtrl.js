@@ -1,6 +1,6 @@
 // public/js/controllers/MainCtrl.js
-angular.module('LogoutCtrl', []).controller('LogoutController', function($location) {
-    Session.clear();
-    $location.path('/home');
-});
+angular.module('LogoutCtrl', [])
+.controller('LogoutController', ['$window','$http', function($window,$http) {
+    $window.location.href = '/logout';
+}]);
 

@@ -1,18 +1,19 @@
-var GoogleBooks = require('./models/bookGoogle.js');
+var GoogleBooks = require('./models/bookGoogle.js')
+var Users = require('./models/user.js');
 var Client = require('node-rest-client').Client;
 var client = new Client();
 
 
 module.exports = function(app){
     //To get all books
-    app.get('/api/books',function(req, res) {
-		GoogleBooks.find(function(err, books) {
+    /*app.get('/api/books',function(req, res) {
+		Users.findOne({_id:req.session.passport.user},function(err, user) {
 			if (err){
 				res.send(err);
             }
-			res.json(books);
+			res.json(user.wishlist);
 		});
-	});
+	});*/
 	
 	//To get books by ID
 	app.get('/api/books/:book_id', function(req, res) {
@@ -43,9 +44,9 @@ module.exports = function(app){
 		});
 	});
 	
-	app.post('/api/books', function(req,res){
+	app.post('/api/wishlist', function(req,res){
 		
-		GoogleBooks.findOne({id : req.body.id}, function(err, book) {
+		/*GoogleBooks.findOne({id : req.body.id}, function(err, book) {
 			if (book){
 				res.json({ message: 'Book exists!' });
 			}
@@ -57,6 +58,29 @@ module.exports = function(app){
 					res.json({ message: 'Book added!' });
 				});
 			}
-		});
+		});*/
+		var newBook = new GoogleBooks(req.body);
+		Users.update({_id:req.session.passport.user},{$addToSet:{'wishlist':newBook}},{},function callback (err, numAffected) {
+			  // numAffected is the number of updated documents
+			  if(numAffected){
+			  	res.json({ message: 'Book added to wishlist!' });
+			  }
+			  /*else{
+			  	res.json({ message: 'Book exists in wishlist!' });
+			  }*/
+			});
 	});
+	
+	app.post('/api/inventory', function(req, res) {
+		var newBook = new GoogleBooks(req.body);
+		Users.update({_id:req.session.passport.user},{$addToSet:{'inventory':newBook}},{},function callback (err, numAffected) {
+			  // numAffected is the number of updated documents
+			  if(numAffected){
+			  	res.json({ message: 'Book added to inventory!' });
+			  }
+			  /*else{
+			  	res.json({ message: 'Book exists in inventory!' });
+			  }*/
+		});
+	})
 }
