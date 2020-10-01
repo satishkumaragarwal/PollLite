@@ -1,4 +1,4 @@
 PollLite
 ========
 
-Voting App
+Best Voting App
